@@ -1,6 +1,4 @@
-# 🚀Docker Image Management, Docker Hub and AWS ECR Complete Notes
-
-
+## 🚀Docker Image Management, Docker Hub and AWS ECR .
 ---
 ## 🐳 What is a Docker Image?
 
@@ -247,6 +245,8 @@ docker pull 472173421444.dkr.ecr.ap-south-1.amazonaws.com/my-cont:v1
 docker run -it 472173421444.dkr.ecr.ap-south-1.amazonaws.com/my-cont:v1 /bin/bash
 ``` 
 ## 🧠 Explanation of Each Command
+```bash
+
 aws ecr create-repository	Creates a new repository in AWS ECR
 aws ecr get-login-password	Retrieves a temporary authentication token
 docker login	Logs Docker into ECR using AWS credentials
@@ -255,6 +255,7 @@ docker push	Uploads the image to ECR
 docker pull	Downloads image from ECR to your system
 docker run	Runs a container from the pulled image
 
+```
 ## 🧾 Workflow Summary
 ```bash
 # 1. Configure AWS CLI
