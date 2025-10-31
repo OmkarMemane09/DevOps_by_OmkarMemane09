@@ -32,13 +32,12 @@ docker network ls
 docker run -d --name web1 nginx
 docker exec -it web1 ping web2
 Default Bridge Network Example Diagram:
-```
 
 Host Machine
  ├── Bridge Network (docker0)
  │     ├── Container A (web1)
  │     └── Container B (web2)
- 
+ ```
 ### 2. ⚡ Host Network
 Removes isolation between the container and the host.
 Container shares the host’s IP and network stack.
