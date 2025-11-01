@@ -1,4 +1,4 @@
-# 🚀 Deploying a Website using Docker Image and Container
+# 🚀 Deploying a Website using Docker Image, Container and Docker File .
 
 ### **Step 1: Create an EC2 Instance**
 - Launch an **EC2 instance** (Ubuntu preferred).
