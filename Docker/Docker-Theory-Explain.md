@@ -1,4 +1,4 @@
-# What is Docker? A Quick Explanation
+# What is Docker?
 
 ## The Simple Analogy: Shipping Containers
 
