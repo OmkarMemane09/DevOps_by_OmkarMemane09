@@ -30,7 +30,7 @@ EXPOSE 80
 ```
 ### Step 5: Build the Docker Image
 ```bash
-docker build -t img1
+docker build -t img1 .
 
 ```
 
