@@ -1,1 +1,151 @@
+ 🚀 EKS Cluster Setup and EC2 Integration Guide
 
+
+## 📋 Table of Contents
+
+1. [Overview](#-overview)
+2. [Step 1: Create an EKS Cluster](#️-step-1-create-an-eks-cluster)
+3. [Step 2: Create and Connect an EC2 Instance](#-step-2-create-and-connect-an-ec2-instance)
+4. [Step 3: Install kubectl](#-step-3-install-kubectl)
+5. [Step 4: Install AWS CLI](#️-step-4-install-aws-cli)
+6. [Step 5: Configure AWS CLI](#-step-5-configure-aws-cli)
+7. [Step 6: Create EKS Cluster using eksctl](#-step-6-create-eks-cluster-using-eksctl)
+8. [Step 7: Connect to the EKS Cluster](#-step-7-connect-to-the-eks-cluster)
+9. [Step 8: Delete the EKS Cluster](#️-step-8-delete-the-eks-cluster)
+10. [Step 9: Add Node Group in Cluster](#-step-9-add-node-group-in-cluster)
+11. [Step 10: Practice Kubernetes Commands](#-step-10-practice-kubernetes-commands)
+12. [Conclusion](#-conclusion)
+
+---
+
+## 🧩 Overview
+
+This guide provides a **complete step-by-step process** for setting up an **Amazon EKS cluster** and connecting it with an **EC2 instance**.  
+You’ll learn how to install and configure essential tools such as `kubectl`, `AWS CLI`, and `eksctl`, as well as practice key Kubernetes commands.
+
+---
+
+## ⚙️ Step 1: Create an EKS Cluster
+
+1. Navigate to **Amazon EKS** in the AWS Management Console.  
+2. Choose **Create Cluster**.  
+3. Select **Custom (without node group)** option.  
+4. Enter a **Cluster Name**.  
+5. Under **Cluster Service Role**, click **Create Role → Next → Next**, then name and create the role.  
+6. Refresh the page and select the **Recommended Role**.  
+7. Proceed with **default settings** for compute and logging.  
+8. Under **Networking**, attach a **Security Group** that allows **All Traffic**.  
+9. Review all configurations and click **Create**.
+
+---
+
+## 💻 Step 2: Create and Connect an EC2 Instance
+
+1. Open the **EC2 Dashboard** in a new tab.  
+2. Launch a new instance with the following configuration:
+   - **AMI:** Ubuntu  
+   - **Instance Type:** c7flex.large  
+   - **Security Group:** Same as used in the EKS Cluster  
+3. Launch and **connect** to the instance using SSH.  
+
+---
+
+## 🧰 Step 3: Install `kubectl`
+
+```bash
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+# Validate the binary
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+
+# Install kubectl
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+If you don’t have root access:
+
+bash
+Copy code
+chmod +x kubectl
+mkdir -p ~/.local/bin
+mv ./kubectl ~/.local/bin/kubectl
+Verify installation:
+
+bash
+Copy code
+kubectl version --client
+☁️ Step 4: Install AWS CLI
+bash
+Copy code
+sudo apt install unzip -y
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+🔐 Step 5: Configure AWS CLI
+To connect to AWS services:
+
+bash
+Copy code
+aws configure
+Provide your Access Key ID, Secret Access Key, Region, and Output format when prompted.
+
+🧱 Step 6: Create EKS Cluster using eksctl
+Use eksctl to create the cluster:
+
+bash
+Copy code
+eksctl create cluster --name demo-ekscluster --region us-east-1 --version 1.27 --nodegroup-name linux-nodes --node-type t2.micro --nodes 2
+🔗 Step 7: Connect to the EKS Cluster
+Update kubeconfig to connect your EC2 to the EKS cluster:
+
+bash
+Copy code
+aws eks update-kubeconfig --name demo-ekscluster --region us-east-1
+Check cluster info:
+
+bash
+Copy code
+kubectl cluster-info
+🗑️ Step 8: Delete the EKS Cluster
+If you need to delete the cluster:
+
+bash
+Copy code
+eksctl delete cluster --name demo-ekscluster --region ap-south-1
+🧩 Step 9: Add Node Group in Cluster
+Go to your EKS Cluster in AWS Console.
+
+Navigate to Compute → Add Node Group.
+
+Create a new IAM Role with minimal permissions.
+
+Select the instance type same as EC2 (c7flex.large).
+
+Once nodes are created, verify from your EC2 using:
+
+bash
+Copy code
+kubectl get nodes
+🧪 Step 10: Practice Kubernetes Commands
+After connecting nodes successfully, practice the following:
+
+bash
+Copy code
+# Check nodes
+kubectl get nodes
+
+# Run a sample Nginx pod
+kubectl run nginx-pod --image=nginx
+
+# List all pods
+kubectl get pods
+
+# Describe a pod
+kubectl describe pod nginx-pod
+
+# Explore API resources
+kubectl api-resources
+
+# Create pod using YAML
+nano pod.yml
+kubectl apply -f pod.yml
+kubectl get pods
