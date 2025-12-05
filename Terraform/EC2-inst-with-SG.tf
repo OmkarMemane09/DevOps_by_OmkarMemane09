@@ -45,7 +45,7 @@ resource "aws_instance" "terraform" {
               sudo systemctl enable nginx
               
    EOF
-
+)
   tags = {
     Name = "terraform"
   }
