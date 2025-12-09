@@ -1,4 +1,4 @@
-# 📌 1. What is a Terraform Module?
+#  1. What is a Terraform Module?
 
 A **Terraform Module** is a folder that contains multiple `.tf` files used to create related resources.
 
@@ -10,8 +10,8 @@ Think of a module like a **function in programming**:
 - Return **outputs**  
 - Reuse the module anywhere  
 
-### ✔ The root folder = the **root module**  
-### ✔ The folders inside `modules/` = **child modules**
+#####  The root folder = the **root module**  
+#####  The folders inside `modules/` = **child modules**
 
 Modules help in:
 
@@ -22,8 +22,8 @@ Modules help in:
 - Scalability for large infrastructures  
 
 ---
-
-#  Terraform Modules: VPC, Subnet & EC2 
+# HandsOn Practise 
+##  Terraform Modules: VPC, Subnet & EC2 
 
 This repository demonstrates how to build **production-ready Terraform modules** for:
 
@@ -35,7 +35,7 @@ You will learn how modules work, how to organize Terraform code on a server, how
 
 ---
 
-# 📌 2. Project Structure (Production Ready)
+#  2. Project Structure (Production Ready)
 ```tree
 terraform-project/
   │── main.tf
@@ -59,8 +59,6 @@ terraform-project/
   |     ├── variables.tf
   |     └── outputs.tf
 ```
-yaml
-Copy code
 
 ---
 
@@ -87,7 +85,8 @@ touch modules/vpc/{main.tf,variables.tf,outputs.tf} \
       modules/ec2/{main.tf,variables.tf,outputs.tf}
 ```
 
-📌 4. Root Module — main.tf
+## 4. Root Module — main.tf
+
 This is the entry point that calls all modules.
 
 ```hcl
@@ -117,6 +116,7 @@ module "ec2" {
 }
 ```
 ## 5. VPC Module (modules/vpc)
+**modules/vpc/main.tf**
 ```
 nano main.tf
 ```
@@ -129,6 +129,7 @@ resource "aws_vpc" "this" {
   }
 }
 ```
+**modules/vpc/variables.tf**
 ```
  nano variables.tf
 ```
@@ -137,6 +138,7 @@ variable "vpc_cidr" {
   type = string
 }
 ```
+**modules/vpc/outputs.tf**
 ```
 nano outputs.tf
 ```
@@ -146,6 +148,7 @@ output "vpc_id" {
 }
 ```
 ## 6. Subnet Module (modules/subnet)
+**modules/subnet/main.tf**
 ```
 nano main.tf
 ```
@@ -159,6 +162,7 @@ resource "aws_subnet" "this" {
   }
 }
 ```
+**modules/subnet/variables.tf**
 ```
 nano variables.tf
 ```
@@ -166,6 +170,7 @@ nano variables.tf
 variable "vpc_id" {}
 variable "subnet_cidr" {}
 ```
+**modules/subnet/outputs.tf**
 ```
 nano outputs.tf
 ```
@@ -177,7 +182,7 @@ output "subnet_id" {
 ## 7. EC2 Module (modules/ec2)
 
 Instead of using a hardcoded AMI, we fetch the latest Amazon Linux 2 AMI dynamically.
-
+**modules/ec2/main.tf**
 ```
 nano main.tf
 ```
@@ -204,6 +209,8 @@ resource "aws_instance" "this" {
   }
 }
 ```
+**modules/ec2/variables.tf**
+
 ```
 nano variables.tf
 ```
@@ -211,6 +218,8 @@ nano variables.tf
 variable "instance_type" {}
 variable "subnet_id" {}
 ```
+**modules/ec2/outputs.tf**
+
 ```
 nano outputs.tf
 ```
