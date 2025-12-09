@@ -6,7 +6,7 @@ This project provisions a highly available, scalable, and load‑balanced web ap
 
 **It deploys two different micro‑apps:**
 
-  - / → Home Application
+  -  / → Home Application
 
   - /cloth/ → Cloth Application
 
@@ -242,7 +242,7 @@ resource "aws_cloudwatch_metric_alarm" "cloth_scale_down" {
   }
 }
 ```
-### Why This Project Is Important in Real‑World Tech?
+## Why This Project Is Important in Real‑World Tech?
 
 **1. Scalability**
 
@@ -316,11 +316,11 @@ provider "aws" {
   region = "us-east-1"
 }
 ```
- Importance:
+ **Importance:**
 
-Terraform needs to know which cloud you are provisioning.
+  - Terraform needs to know which cloud you are provisioning.
 
-Without this, Terraform throws Invalid provider configuration.
+  - Without this, Terraform throws Invalid provider configuration.
 
 ---
 **2️⃣ Launch Templates**
@@ -343,11 +343,11 @@ Creates EC2 that serves Hello, Home via NGINX.
 
 Creates EC2 that serves Hello, Cloth at /cloth/ path.
 
- Importance:
+ **Importance:**
 
-A template for Auto Scaling Groups.
+  - A template for Auto Scaling Groups.
 
-Ensures consistent EC2 configuration.
+  - Ensures consistent EC2 configuration.
 
 User_data installs nginx + sets content.
 
@@ -366,11 +366,11 @@ Only healthy EC2 receive traffic.
 
 ALB knows when to stop sending requests.
 
- Importance:
+ **Importance:**
 
-Required for ALB routing.
+  - Required for ALB routing.
 
-Enables auto healing with ASG.
+  - Enables auto healing with ASG.
 
 ---
 
@@ -388,27 +388,28 @@ What ALB Does:
 
  - Distributes traffic intelligently.
 
- Importance:
+ **Importance:**
 
-Adds load balancing.
+  - Adds load balancing.
 
-Enhances performance and reliability.
+  - Enhances performance and reliability.
 
 Required for microservices URLs.
 
 ---
 **5️⃣ Listener + Listener Rule**
-  Listener
+  
+  *Listener*
 
 Receives incoming traffic on port 80. Default action → Home TG.
 
-  Listener Rule
+ *Listener Rule*
 
 If URL contains /cloth/* → forward to Cloth TG.
 
- Importance:
+ **Importance:**
 
-Implements real world application routing.
+  - Implements real world application routing.
 
 Same concept used in e‑commerce:
 
@@ -426,7 +427,8 @@ Each application has 1 ASG.
 
   ASG‑Home → Uses LT‑Home → Attaches to Home TG
   ASG‑Cloth → Uses LT‑Cloth → Attaches to Cloth TG
-ASG Features:
+
+**ASG Features:**
 
 Runs EC2 across 3 Availability Zones.
 
@@ -434,24 +436,24 @@ Ensures instance replacement.
 
 Performs health checks using ALB.
 
- Importance:
+ **Importance:**
 
-Self‑healing architecture.
+  - Self‑healing architecture.
 
-Scales automatically.
+  - Scales automatically.
 
-Ensures uptime even if instance fails.
+  - Ensures uptime even if instance fails.
 
 ---
 **7️⃣ Scaling Policies + CloudWatch Alarms**
 
 If CPU ≤ 25% for 5 evaluation periods → scale down by 1.
 
- Importance:
+ **Importance:**
 
-Saves cost.
+  - Saves cost.
 
-Enables dynamic scaling.
+  - Enables dynamic scaling.
 
-Used in production.
+  - Used in production.
 
