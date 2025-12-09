@@ -1,4 +1,4 @@
-#  1. What is a Terraform Module?
+#  Terraform Module
 
 A **Terraform Module** is a folder that contains multiple `.tf` files used to create related resources.
 
@@ -35,7 +35,7 @@ You will learn how modules work, how to organize Terraform code on a server, how
 
 ---
 
-#  2. Project Structure (Production Ready)
+#  Project Structure (Production Ready)
 ```tree
 terraform-project/
   │── main.tf
@@ -62,30 +62,30 @@ terraform-project/
 
 ---
 
-#  3. Creating This Structure on a Server
+#  Creating This Structure on a Server
 
-### **Step 1 — Create project folder**
+### *Step 1 — Create project folder*
 
 ```bash
 mkdir terraform-project
 cd terraform-project
 ```
-### **Step 2 — Create module folders**
+### *Step 2 — Create module folders*
 ```bash
 mkdir -p modules/vpc modules/subnet modules/ec2
 ```
-### **Step 3 — Create root module files
+### *Step 3 — Create root module files*
 ```bash
 touch main.tf variables.tf outputs.tf provider.tf
 ```
-### **Step 4 — Create child module files**
+### *Step 4 — Create child module files*
 ```bash
 touch modules/vpc/{main.tf,variables.tf,outputs.tf} \
       modules/subnet/{main.tf,variables.tf,outputs.tf} \
       modules/ec2/{main.tf,variables.tf,outputs.tf}
 ```
 
-## 4. Root Module — main.tf
+## Root Module — main.tf
 
 This is the entry point that calls all modules.
 
@@ -115,7 +115,7 @@ module "ec2" {
   instance_type = "t2.micro"
 }
 ```
-## 5. VPC Module (modules/vpc)
+## VPC Module (modules/vpc)
 **modules/vpc/main.tf**
 ```
 nano main.tf
@@ -147,7 +147,7 @@ output "vpc_id" {
   value = aws_vpc.this.id
 }
 ```
-## 6. Subnet Module (modules/subnet)
+## Subnet Module (modules/subnet)
 **modules/subnet/main.tf**
 ```
 nano main.tf
@@ -179,7 +179,7 @@ output "subnet_id" {
   value = aws_subnet.this.id
 }
 ```
-## 7. EC2 Module (modules/ec2)
+##  EC2 Module (modules/ec2)
 
 Instead of using a hardcoded AMI, we fetch the latest Amazon Linux 2 AMI dynamically.
 **modules/ec2/main.tf**
@@ -228,7 +228,7 @@ output "instance_id" {
   value = aws_instance.this.id
 }
 ```
-## 8. Dependencies in Terraform
+## Dependencies in Terraform
 
 Terraform decides the order of resource creation using dependencies.
 
@@ -262,7 +262,7 @@ resource "aws_instance" "this" {
   ]
 }
 ```
-## 9. Module Flow Diagram
+##  Module Flow Diagram
 ```tree
 Root Module (main.tf)
       │
@@ -278,7 +278,7 @@ Root Module (main.tf)
                 ↓
             uses subnet_id → launches EC2
 ```
-## 10. Initialize and Apply Terraform
+## Initialize and Apply Terraform
 ```
 terraform init      # download modules & providers
 terraform validate  # validate syntax
