@@ -279,9 +279,30 @@ This is the same architecture used in enterprise microservices & e‑commerce sy
 ##  Full Architecture Flow 
 
 ```
-User → ALB → Listener (port 80)
-       ├── If path == /cloth/* → Cloth Target Group → ASG-Cloth → EC2 (cloth)
-       └── Else default       → Home Target Group  → ASG-Home  → EC2 (home)
+                    ┌──────────────────────────┐
+                    │      Internet Users       │
+                    └──────────────┬───────────┘
+                                   │
+                         ┌─────────▼─────────┐
+                         │  Application LB   │
+                         └───────┬───────────┘
+                 ┌───────────────┼─────────────────┐
+                 │                                 │
+     Path: "/"   │               Path: "/cloth/*"  │
+ ┌──────────────▼───────┐    ┌───────────────────▼─────────┐
+ │   Target Group: Home │    │ Target Group: Cloth         │
+ └──────────────┬───────┘    └───────────────────┬─────────┘
+                │                                │
+       ┌────────▼────────┐             ┌─────────▼────────┐
+       │ AutoScalingGrp  │             │ AutoScalingGrp   │
+       │    (Home)       │             │     (Cloth)      │
+       └────────┬────────┘             └─────────┬────────┘
+                │                                │
+        ┌───────▼──────┐                 ┌────────▼───────┐
+        │ LaunchTemplate│                │ LaunchTemplate │
+        │     Home      │                │     Cloth      │
+        └───────────────┘                └────────────────┘
+
 ```
 ###  Detailed Explanation of Each Terraform Block
 
