@@ -244,23 +244,23 @@ resource "aws_cloudwatch_metric_alarm" "cloth_scale_down" {
 ```
 ### Why This Project Is Important in Real‑World Tech?
 
-**✔ 1. Scalability**
+**1. Scalability**
 
 ASGs automatically add/remove EC2 instances based on load.
 
-**✔ 2. High Availability**
+**2. High Availability**
 
 Instances run across multiple AZs → no single point of failure.
 
-**✔ 3. Load Balancing**
+**3. Load Balancing**
 
 ALB distributes traffic intelligently based on URL paths.
 
-**✔ 4. Cost Optimization**
+**4. Cost Optimization**
 
 Auto‑scale down when CPU ≤ 25% (CloudWatch alarm).
 
-**✔ 5. Production‑grade Architecture**
+**5. Production‑grade Architecture**
 
 Things that covered in this flow :
 ```
@@ -280,7 +280,7 @@ This is the same architecture used in enterprise microservices & e‑commerce sy
 
 ```
                     ┌──────────────────────────┐
-                    │      Internet Users       │
+                    │      Internet Users      │
                     └──────────────┬───────────┘
                                    │
                          ┌─────────▼─────────┐
@@ -304,7 +304,7 @@ This is the same architecture used in enterprise microservices & e‑commerce sy
         └───────────────┘                └────────────────┘
 
 ```
-###  Detailed Explanation of Each Terraform Block
+##  Detailed Explanation of Each Terraform Block
 
 Below is a clear and complete explanation of how every block works.
 
@@ -322,6 +322,7 @@ Terraform needs to know which cloud you are provisioning.
 
 Without this, Terraform throws Invalid provider configuration.
 
+---
 **2️⃣ Launch Templates**
 
 Launch Templates define:
@@ -342,7 +343,7 @@ Creates EC2 that serves Hello, Home via NGINX.
 
 Creates EC2 that serves Hello, Cloth at /cloth/ path.
 
-🔍 Importance:
+ Importance:
 
 A template for Auto Scaling Groups.
 
@@ -350,12 +351,14 @@ Ensures consistent EC2 configuration.
 
 User_data installs nginx + sets content.
 
+---
+
 **3️⃣ Target Groups (TG)**
 
 Each TG maps traffic to EC2 instances.
 
- - ✔ Home TG → serves /
- - ✔ Cloth TG → serves /cloth/
+ -  Home TG → serves /
+ -  Cloth TG → serves /cloth/
 
 Each TG includes health checks, ensuring:
 
@@ -363,11 +366,13 @@ Only healthy EC2 receive traffic.
 
 ALB knows when to stop sending requests.
 
-🔍 Importance:
+ Importance:
 
 Required for ALB routing.
 
 Enables auto healing with ASG.
+
+---
 
 **4️⃣ Application Load Balancer (ALB)**
 ```
@@ -383,7 +388,7 @@ What ALB Does:
 
  - Distributes traffic intelligently.
 
-🔍 Importance:
+ Importance:
 
 Adds load balancing.
 
@@ -391,16 +396,17 @@ Enhances performance and reliability.
 
 Required for microservices URLs.
 
+---
 **5️⃣ Listener + Listener Rule**
-✔ Listener
+  Listener
 
 Receives incoming traffic on port 80. Default action → Home TG.
 
-✔ Listener Rule
+  Listener Rule
 
 If URL contains /cloth/* → forward to Cloth TG.
 
-🔍 Importance:
+ Importance:
 
 Implements real world application routing.
 
@@ -412,12 +418,14 @@ Same concept used in e‑commerce:
 
  - /cart/*
 
+---
+
 **6️⃣ Auto Scaling Groups (ASG)**
 
 Each application has 1 ASG.
 
-✔ ASG‑Home → Uses LT‑Home → Attaches to Home TG
-✔ ASG‑Cloth → Uses LT‑Cloth → Attaches to Cloth TG
+  ASG‑Home → Uses LT‑Home → Attaches to Home TG
+  ASG‑Cloth → Uses LT‑Cloth → Attaches to Cloth TG
 ASG Features:
 
 Runs EC2 across 3 Availability Zones.
@@ -426,7 +434,7 @@ Ensures instance replacement.
 
 Performs health checks using ALB.
 
-🔍 Importance:
+ Importance:
 
 Self‑healing architecture.
 
@@ -434,11 +442,12 @@ Scales automatically.
 
 Ensures uptime even if instance fails.
 
+---
 **7️⃣ Scaling Policies + CloudWatch Alarms**
 
 If CPU ≤ 25% for 5 evaluation periods → scale down by 1.
 
-🔍 Importance:
+ Importance:
 
 Saves cost.
 
