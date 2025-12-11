@@ -48,7 +48,7 @@ Storing the state remotely solves all major problems.
 
 ---
 
-## 📌 4. Remote State with AWS S3
+##  Remote State with AWS S3
 Terraform allows saving state file in an S3 bucket instead of the local filesystem.
 
 ### **Example S3 Backend Configuration**
