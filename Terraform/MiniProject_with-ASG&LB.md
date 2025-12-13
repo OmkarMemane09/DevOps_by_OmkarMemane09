@@ -14,11 +14,14 @@ Each application has its own Launch Template, ASG, and Target Group. The ALB per
 ## Terraform main.tf
 
 ```hcl
+
+# Change region if needed
 provider "aws" {
-  region = "us-east-1"
+  region = "us-east-1" 
 }
 
 # ---------------- Launch Templates ----------------
+# Change imagi_id ,vpc security group id 
 resource "aws_launch_template" "lt-home" {
   name                   = "home"
   image_id               = "ami-0ecb62995f68bb549"
@@ -39,7 +42,7 @@ EOF
     Name = "home"
   }
 }
-
+# Change image_id ,vpc security group id 
 resource "aws_launch_template" "lt-cloth" {
   name                   = "cloth"
   image_id               = "ami-0ecb62995f68bb549"
@@ -63,6 +66,7 @@ EOF
 }
 
 # ---------------- Target Groups (with health checks) ----------------
+# Change vpc security group id 
 resource "aws_lb_target_group" "home-tg" {
   name        = "home-tg"
   target_type = "instance"
@@ -80,7 +84,7 @@ resource "aws_lb_target_group" "home-tg" {
     timeout             = 5
   }
 }
-
+# Change vpc security group id 
 resource "aws_lb_target_group" "cloth-tg" {
   name        = "cloth-tg"
   target_type = "instance"
@@ -101,6 +105,7 @@ resource "aws_lb_target_group" "cloth-tg" {
 }
 
 # ---------------- Application Load Balancer ----------------
+# Change vpc security group id ,also give subnets.
 resource "aws_lb" "alb" {
   name               = "alb"
   internal           = false
