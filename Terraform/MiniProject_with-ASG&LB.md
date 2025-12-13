@@ -29,14 +29,66 @@ resource "aws_launch_template" "lt-home" {
   vpc_security_group_ids = ["sg-09a08028b02863dc8"]
 
   user_data = base64encode(<<-EOF
-    #!/bin/bash
-    apt update -y
-    apt install -y nginx
-    echo "Hello, Home" > /var/www/html/index.html
-    systemctl start nginx
-    systemctl enable nginx
+#!/bin/bash
+apt update -y
+apt install -y nginx
+
+cat <<HTML > /var/www/html/index.html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+    }
+    header {
+      background: #1e293b;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    section {
+      padding: 40px;
+      text-align: center;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      margin: 20px auto;
+      width: 300px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🏠 Home Service</h1>
+    <p>Welcome to Home Application</p>
+  </header>
+
+  <section>
+    <div class="card">
+      <h3>Section 1</h3>
+      <p>This page is served via ALB + ASG</p>
+    </div>
+    <div class="card">
+      <h3>Section 2</h3>
+      <p>Infrastructure created using Terraform</p>
+    </div>
+  </section>
+</body>
+</html>
+HTML
+
+systemctl restart nginx
+systemctl enable nginx
 EOF
-  )
+)
+
 
   tags = {
     Name = "home"
@@ -50,15 +102,63 @@ resource "aws_launch_template" "lt-cloth" {
   vpc_security_group_ids = ["sg-09a08028b02863dc8"]
 
   user_data = base64encode(<<-EOF
-    #!/bin/bash
-    apt update -y
-    apt install -y nginx
-    mkdir -p /var/www/html/cloth
-    echo "Hello, cloth" > /var/www/html/cloth/index.html
-    systemctl start nginx
-    systemctl enable nginx
+#!/bin/bash
+apt update -y
+apt install -y nginx
+mkdir -p /var/www/html/cloth
+
+cat <<HTML > /var/www/html/cloth/index.html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cloth Store</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #fff7ed;
+      margin: 0;
+    }
+    header {
+      background: #9a3412;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .products {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px;
+    }
+    .product {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 200px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>👕 Cloth Store</h1>
+    <p>Path based routing demo</p>
+  </header>
+
+  <div class="products">
+    <div class="product">T-Shirt</div>
+    <div class="product">Jeans</div>
+    <div class="product">Jacket</div>
+  </div>
+</body>
+</html>
+HTML
+
+systemctl restart nginx
+systemctl enable nginx
 EOF
-  )
+)
+
 
   tags = {
     Name = "cloth"
