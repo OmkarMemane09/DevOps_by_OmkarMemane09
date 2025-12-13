@@ -1,4 +1,4 @@
-# Terraform State & Remote State (AWS S3 Backend) — Complete Notes
+# Terraform State & Remote State (AWS S3 Backend)
 
 ##   What is Terraform State?
 Terraform keeps track of all created infrastructure using a file called **terraform.tfstate**.
