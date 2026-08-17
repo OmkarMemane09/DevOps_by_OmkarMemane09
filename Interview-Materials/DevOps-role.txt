@@ -1,4 +1,49 @@
-𝐃𝐞𝐯𝐎𝐩𝐬 𝐅𝐮𝐧𝐝𝐚𝐦𝐞𝐧𝐭𝐚𝐥𝐬 𝐘𝐨𝐮 𝐌𝐮𝐬𝐭 𝐎𝐰𝐧
+• 𝐋𝐢𝐧𝐮𝐱 & 𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐢𝐧𝐠
+1. Explain the complete request flow from a browser to a Kubernetes pod.
+2. Difference between TCP and UDP. Where have you used each?
+3. How does DNS resolution work internally?
+4. How would you debug high CPU, memory, or disk utilization on a Linux server?
+5. Explain Load Balancer, Reverse Proxy, and Ingress with real examples.
+
+• 𝐃𝐨𝐜𝐤𝐞𝐫 & 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬
+1. What happens internally when you run docker run?
+2. Difference between CMD and ENTRYPOINT.
+3. Why is a pod stuck in CrashLoopBackOff? How would you debug it?
+4. Difference between Deployment, StatefulSet, DaemonSet, and Job.
+5. Readiness Probe vs Liveness Probe.
+6. Kubernetes pods are Running but users receive 503 errors. What will you check?
+7. How does Kubernetes Service Discovery work?
+8. Explain ConfigMaps and Secrets. How do you manage them across environments?
+
+• 𝐂𝐈/𝐂𝐃
+1. Explain your CI/CD pipeline from code commit to production.
+2. How do you implement zero-downtime deployments?
+3. How would you optimize a pipeline that takes 25 minutes to complete?
+4. How do you implement rollback if deployment fails?
+5. How do you manage secrets securely in CI/CD pipelines?
+
+• 𝐓𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦 & 𝐂𝐥𝐨𝐮𝐝
+1. How does Terraform state locking work?
+2. Difference between count and for_each.
+3. How do you migrate Terraform state without recreating resources?
+4. What is Terraform Drift? How do you detect it?
+5. Explain your Terraform module structure for multiple environments.
+6. Difference between IAM Roles and IAM Policies.
+7. Explain VPC, Subnets, NAT Gateway, and Internet Gateway.
+
+• 𝐌𝐨𝐧𝐢𝐭𝐨𝐫𝐢𝐧𝐠 & 𝐓𝐫𝐨𝐮𝐛𝐥𝐞𝐬𝐡𝐨𝐨𝐭𝐢𝐧𝐠
+1. Difference between logs, metrics, and traces.
+2. How do you investigate a sudden spike in application latency?
+3. Explain your monitoring and alerting strategy.
+4. Walk me through a production issue you resolved.
+
+• 𝐒𝐞𝐜𝐮𝐫𝐢𝐭𝐲 & 𝐏𝐫𝐨𝐝𝐮𝐜𝐭𝐢𝐨𝐧
+1. How do you secure container images before deployment?
+2. How do you implement RBAC in Kubernetes?
+3. How do you manage secrets in production?
+4. How would you design a disaster recovery strategy?
+5. How do you reduce cloud costs without affecting availability?
+6. Explain one challenging production incident and how you resolved it.𝐃𝐞𝐯𝐎𝐩𝐬 𝐅𝐮𝐧𝐝𝐚𝐦𝐞𝐧𝐭𝐚𝐥𝐬 𝐘𝐨𝐮 𝐌𝐮𝐬𝐭 𝐎𝐰𝐧
 🐧 Linux
 • How do you change file permissions in Linux?
 • How do you search for a file by name in Linux?
