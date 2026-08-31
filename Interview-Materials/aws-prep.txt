@@ -1,4 +1,42 @@
-📌 Interview Questions Asked:
+ Introduce yourself.
+
+2. What projects have you worked on?
+
+3. What AWS services have you worked with?
+
+4. Describe the recent project/work you were involved in.
+
+5. What challenges did you encounter in your recent project, and how did you resolve them?
+
+6. What challenges do you typically encounter during a Kubernetes upgrade?
+
+7. What checks do you perform after a Kubernetes upgrade?
+
+8. What was the Kubernetes version before the upgrade, and which version did you upgrade to?
+
+9. What checks do you perform after the upgrade to ensure everything is working correctly?
+
+10. What is the difference between managed and self-managed nodes?
+
+11. What is the CIDR range of your subnet?
+
+12. How many route tables can a subnet be associated with?
+
+13. If you need to make changes to a route table, would you modify the existing one or create a new one? Why?
+
+14. What would you do if the existing route table does not allow the required modification?
+
+15. Have you ever created a Kubernetes cluster? What steps would you consider when creating one?
+
+16. How would you configure autoscaling policies for a Kubernetes cluster?
+
+17. What are the different ways you can create a Kubernetes cluster?
+
+18. How many Kubernetes clusters are you currently managing?
+
+19. How do you handle conflicts when multiple people are trying to modify infrastructure using Terraform?
+
+20. How do you secure a Terraform state file?📌 Interview Questions Asked:
 1️⃣ What is the difference between ALB and NLB?
 2️⃣ If the .pem key is lost, how would you recover access to the EC2 instance?
 3️⃣ Suppose your system is running fine and suddenly CPU usage spikes to 100% — how would you stabilize the system?
