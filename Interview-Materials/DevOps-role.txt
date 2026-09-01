@@ -4,7 +4,49 @@
 3. How does DNS resolution work internally?
 4. How would you debug high CPU, memory, or disk utilization on a Linux server?
 5. Explain Load Balancer, Reverse Proxy, and Ingress with real examples.
+1. What is the importance of DevOps in the Software Development Life Cycle (SDLC)?
 
+2. How is CI achieved?
+
+3. How do you ensure security and compliance in CI/CD?
+
+4. How does containerization work in deployments?
+
+5. Explain Blue-Green deployment.
+
+6. What is self-healing in Kubernetes?
+
+7. How would you troubleshoot an unreachable pod?
+
+8. What are the use cases of Ansible?
+
+9. Explain Infrastructure as Code (IaC).
+
+10. What happens when you run "terraform init"?
+
+11. What are the different Linux distributions?
+
+12. How do you check the performance of a Linux server?
+
+13. What commands do you use to troubleshoot network issues in Linux?
+
+14. What kind of Bash scripts have you used in your project?
+
+15. What AWS services have you worked with?
+
+16. Have you used both CloudFormation and Terraform?
+
+17. What is the difference between CloudFormation and Terraform? Which is better?
+
+18. If you are working specifically with AWS, which would you choose: CloudFormation or Terraform?
+
+19. Write a simple Dockerfile for a Node.js application.
+
+20. How would you write the same Dockerfile using a multi-stage build?
+
+21. Can you create a Jenkins pipeline for building and deploying the Docker image?
+
+22. If an application is deployed to EKS and a pod fails, how would you investigate it
 • 𝐃𝐨𝐜𝐤𝐞𝐫 & 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬
 1. What happens internally when you run docker run?
 2. Difference between CMD and ENTRYPOINT.
