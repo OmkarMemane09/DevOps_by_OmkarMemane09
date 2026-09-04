@@ -1,0 +1,29 @@
+. Your application is healthy, but users experience intermittent timeouts.
+How would you identify whether the issue is in the application, network, infrastructure, or load balancer?
+
+2. A deployment completed successfully, but response time increased from 200 ms to 3 seconds.
+Walk me through your troubleshooting approach.
+
+3. Your CI/CD pipeline has been stable for months but suddenly starts failing without any pipeline changes.
+How would you isolate the root cause?
+
+4. A production deployment failed halfway through, leaving different service versions running.
+How would you recover with minimal customer impact?
+
+5. A container keeps restarting, but there are no application errors in the logs.
+What would you investigate next?
+
+6. Your monitoring dashboards look healthy, but customers report slow application performance.
+What would be your next steps?
+
+7. Your company wants to migrate manually managed infrastructure to Terraform.
+How would you approach the migration without disrupting production?
+
+8. A critical vulnerability is discovered in a production container image.
+What are your immediate actions and long-term preventive measures?
+
+9. You need to reduce infrastructure costs by 30% without affecting performance or availability.
+Where would you start?
+
+10. Describe the most challenging production incident you've handled.
+How did you troubleshoot it, communicate during the incident, and prevent it from happening again?
